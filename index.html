@@ -1,0 +1,657 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindVault - Personal Knowledge Base</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/notes.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+
+    <!-- Brand -->
+    <div class="brand">
+
+        <div class="brand-icon">M</div>
+
+        <div class="brand-text">
+            <h1>MindVault</h1>
+            <p>Your smart knowledge space</p>
+        </div>
+
+    </div>
+
+
+    <!-- Navigation -->
+    <nav class="nav-menu">
+
+        <div class="nav-section-title">
+            MAIN
+        </div>
+
+        <button class="nav-item active" data-view="dashboard">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Dashboard</span>
+        </button>
+
+        <button class="nav-item" data-view="statistics">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Statistics</span>
+        </button>
+
+
+        <div class="nav-section-title">
+            LIBRARY
+        </div>
+
+        <button class="nav-item" data-view="notes">
+            <span class="nav-icon">📝</span>
+            <span class="nav-label">All Notes</span>
+        </button>
+
+        <button class="nav-item" data-view="favorites">
+            <span class="nav-icon">⭐</span>
+            <span class="nav-label">Favorites</span>
+        </button>
+
+        <button class="nav-item" data-view="archive">
+            <span class="nav-icon">🗄️</span>
+            <span class="nav-label">Archive</span>
+        </button>
+
+
+        <div class="nav-section-title">
+            SYSTEM
+        </div>
+
+        <button class="nav-item" data-view="settings">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">Settings</span>
+        </button>
+
+    </nav>
+
+
+    <!-- Storage -->
+    <div class="sidebar-bottom">
+
+    <!-- Profile Card -->
+    <div class="profile-card">
+
+    <div class="profile-avatar">P</div>
+
+    <div class="profile-info">
+        <h4>My Workspace</h4>
+        <p>Knowledge Explorer</p>
+    </div>
+
+    <button class="profile-menu" title="Profile options">⋮</button>
+
+</div>
+
+    <!-- Local Storage -->
+    <div class="storage-card">
+
+        <div class="storage-header">
+
+            <div>
+                <span class="storage-title">
+                    Local Storage
+                </span>
+
+                <span class="storage-subtitle">
+                    Your notes are stored locally
+                </span>
+            </div>
+
+            <span class="storage-icon">💾</span>
+
+        </div>
+
+        <div class="storage-progress">
+            <div
+                class="storage-progress-bar"
+                id="storageProgress">
+            </div>
+        </div>
+
+        <p id="storageText">
+            0 notes saved
+        </p>
+
+    </div>
+
+</div>
+
+</aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <button class="icon-btn mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+        <div class="search-box">
+          <span>⌕</span>
+          <input type="search" id="globalSearch" placeholder="Search notes, ideas, references...">
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn" id="themeBtn" title="Toggle theme">☾</button>
+          <button class="primary-btn" id="newNoteBtn">+ New Note</button>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="view-section active" id="dashboardView">
+          <section class="hero">
+
+    <div class="hero-content">
+
+        <span class="hero-tag">
+            📚 PERSONAL KNOWLEDGE BASE
+        </span>
+
+        <h1>
+            Organize Your Ideas.<br>
+            Build Your Knowledge.
+        </h1>
+
+        <p>
+            Save notes, code snippets, articles, research and important ideas
+            in one beautiful workspace. Stay organized and boost your
+            productivity every day.
+        </p>
+
+        <div class="hero-buttons">
+            <button class="hero-btn" id="heroCreateBtn">
+                + Create Note
+            </button>
+
+            <button class="secondary-hero-btn">
+                Explore Notes
+            </button>
+        </div>
+
+        <div class="hero-stats">
+
+          <div class="hero-stat">
+            <h3 id="heroTotalNotes">0</h3>
+            <span>Notes</span>
+          </div>
+
+          <div class="hero-stat">
+            <h3 id="heroTotalCategories">0</h3>
+            <span>Categories</span>
+          </div>
+
+          <div class="hero-stat">
+            <h3 id="heroTotalFavorites">0</h3>
+            <span>Favorites</span>
+          </div>
+
+        </div>
+
+    </div>
+
+    <div class="hero-image">
+
+        <div class="glass-card card1">
+            💡 Ideas
+        </div>
+
+        <div class="glass-card card2">
+            📖 Articles
+        </div>
+
+        <div class="glass-card card3">
+            💻 Code
+        </div>
+
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+
+    </div> 
+</section>
+
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-icon">
+                 <img src="image/sticky-notes.png" alt="Logo">
+              </div>
+              <div><p>Total Notes</p><h3 id="totalNotes">0</h3></div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-icon">
+                 <img src="image/icons8-categories-48.png" alt="Logo">
+              </div>
+              <div><p>Categories</p><h3 id="totalCategories">0</h3></div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-icon">
+                 <img src="image/tags.png" alt="Logo">
+              </div>
+              <div><p>Tags</p><h3 id="totalTags">0</h3></div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-icon">
+                 <img src="image/star.png" alt="Logo">
+              </div>
+              <div><p>Favorites</p><h3 id="totalFavorites">0</h3></div>
+            </article>
+          </div>
+
+          <div class="section-grid">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <span class="eyebrow">RECENT ACTIVITY</span>
+                  <h3>Recently Updated</h3>
+                </div>
+                <button class="text-btn" data-view-target="notes">View all</button>
+              </div>
+              <div id="recentNotes" class="notes-list"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <span class="eyebrow">QUICK ACCESS</span>
+                  <h3>Favorite Notes</h3>
+                </div>
+              </div>
+              <div id="favoritePreview" class="favorite-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view-section" id="notesView">
+          <div class="page-head">
+            <div>
+              <span class="eyebrow">LIBRARY</span>
+              <h2>All Notes</h2>
+              <p>Search, filter and organize your saved knowledge.</p>
+            </div>
+            <button class="primary-btn" id="newNoteBtn2">+ New Note</button>
+          </div>
+
+          <div class="filter-bar">
+            <select id="categoryFilter">
+              <option value="">All Categories</option>
+            </select>
+            <select id="tagFilter">
+              <option value="">All Tags</option>
+            </select>
+            <select id="sortFilter">
+              <option value="updated">Recently Updated</option>
+              <option value="created">Created Date</option>
+              <option value="alpha">Alphabetically</option>
+            </select>
+          </div>
+
+          <div id="notesGrid" class="notes-grid"></div>
+        </section>
+
+        <section class="view-section" id="favoritesView">
+          <div class="page-head">
+            <div>
+              <span class="eyebrow">STARRED</span>
+              <h2>Favorite Notes</h2>
+              <p>Your most important notes in one place.</p>
+            </div>
+          </div>
+          <div id="favoritesGrid" class="notes-grid"></div>
+        </section>
+
+        <section class="view-section" id="archiveView">
+          <div class="page-head">
+            <div>
+              <span class="eyebrow">ARCHIVE</span>
+              <h2>Archived Notes</h2>
+              <p>Restore notes whenever you need them again.</p>
+            </div>
+          </div>
+          <div id="archiveGrid" class="notes-grid"></div>
+        </section>
+
+        <section class="view-section" id="statisticsView">
+
+    <div class="section-head">
+        <div>
+            <span class="eyebrow">INSIGHTS</span>
+            <h2>Statistics</h2>
+            <p>Understand your knowledge activity at a glance.</p>
+        </div>
+    </div>
+
+
+    <!-- Statistics Cards -->
+
+    <div class="stats-grid stats-large">
+
+        <article class="stat-card">
+            <div>
+                <p>Total Notes</p>
+                <h3 id="statTotalNotes">0</h3>
+            </div>
+        </article>
+
+        <article class="stat-card">
+            <div>
+                <p>Favorite Notes</p>
+                <h3 id="statFavorites">0</h3>
+            </div>
+        </article>
+
+        <article class="stat-card">
+            <div>
+                <p>Archived Notes</p>
+                <h3 id="statArchived">0</h3>
+            </div>
+        </article>
+
+        <article class="stat-card">
+            <div>
+                <p>Recently Added</p>
+                <h3 id="statRecent">0</h3>
+            </div>
+        </article>
+
+    </div>
+
+
+    <!-- Dashboard Charts -->
+
+    <div class="dashboard-charts">
+
+        <!-- Notes by Category -->
+
+        <div class="chart-card">
+
+            <div class="panel-head">
+
+                <div>
+                    <span class="eyebrow">CATEGORIES</span>
+                    <h3>Notes by Category</h3>
+                </div>
+
+            </div>
+
+            <div
+                id="categoryChart"
+                class="category-chart">
+            </div>
+
+        </div>
+
+
+        <!-- Knowledge Overview -->
+
+        <div class="chart-card">
+
+            <div class="panel-head">
+
+                <div>
+                    <span class="eyebrow">OVERVIEW</span>
+                    <h3>Knowledge Overview</h3>
+                </div>
+
+            </div>
+
+            <div
+                id="overviewChart"
+                class="overview-chart">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Most Used Tags -->
+
+    <section class="panel">
+
+    <div class="panel-head">
+        <div>
+            <span class="eyebrow">TAGS</span>
+            <h3>Most Used Tags</h3>
+        </div>
+    </div>
+
+    <div id="tagStats" class="tag-cloud"></div>
+
+</section>
+
+</section>
+
+        <section class="view-section" id="settingsView">
+          <div class="page-head">
+            <div>
+              <span class="eyebrow">PREFERENCES</span>
+              <h2>Settings</h2>
+              <p>Manage appearance and your saved data.</p>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+            <section class="setting-card">
+              <h3>Appearance</h3>
+              <p>Switch between light and dark mode.</p>
+              <button class="secondary-btn" id="settingsThemeBtn">Toggle Theme</button>
+            </section>
+            <section class="setting-card">
+              <h3>Export Knowledge Base</h3>
+              <p>Download all notes and settings as JSON.</p>
+              <button class="secondary-btn" id="exportBtn">Export JSON</button>
+            </section>
+            <section class="setting-card">
+              <h3>Import Knowledge Base</h3>
+              <p>Restore notes from a JSON backup.</p>
+              <input type="file" id="importInput" accept=".json" hidden>
+              <button class="secondary-btn" id="importBtn">Import JSON</button>
+            </section>
+            <section class="setting-card danger-card">
+              <h3>Clear All Data</h3>
+              <p>Permanently remove all notes and settings.</p>
+              <button class="danger-btn" id="clearBtn">Clear Everything</button>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="noteModal">
+    <div class="modal note-form-modal">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow">NOTE EDITOR</span>
+          <h2 id="modalTitle">Create New Note</h2>
+        </div>
+        <button class="icon-btn close-modal" data-close="noteModal">×</button>
+      </div>
+
+      <form id="noteForm">
+        <input type="hidden" id="noteId">
+        <label>
+          Title
+          <input type="text" id="noteTitle" placeholder="Enter note title" required>
+        </label>
+        <label>
+          Content
+          <textarea id="noteContent" rows="10" placeholder="Write your ideas, code, article or reference..." required></textarea>
+        </label>
+        <div class="form-row">
+          <label>
+            Category
+            <div class="tag-select category-select" id="categorySelect">
+              <button type="button" class="tag-select-toggle" id="categorySelectToggle" aria-haspopup="listbox" aria-expanded="false">
+                <span id="categorySelectLabel">Select a category</span>
+                <span class="tag-select-arrow">⌄</span>
+              </button>
+              <div class="tag-select-menu category-select-menu" id="categorySelectMenu" role="listbox">
+                                <div class="category-option" role="option" data-value="Getting Started">Getting Started</div>
+                <div class="category-option" role="option" data-value="Programming">Programming</div>
+                <div class="category-option" role="option" data-value="AI & Data Science">AI & Data Science</div>
+                <div class="category-option" role="option" data-value="Web Development">Web Development</div>
+                <div class="category-option" role="option" data-value="App Development">App Development</div>
+                <div class="category-option" role="option" data-value="Database">Database</div>
+                <div class="category-option" role="option" data-value="Machine Learning">Machine Learning</div>
+                <div class="category-option" role="option" data-value="Deep Learning">Deep Learning</div>
+                <div class="category-option" role="option" data-value="Data Analytics">Data Analytics</div>
+                <div class="category-option" role="option" data-value="Projects">Projects</div>
+                <div class="category-option" role="option" data-value="College">College</div>
+                <div class="category-option" role="option" data-value="Study">Study</div>
+                <div class="category-option" role="option" data-value="Assignments">Assignments</div>
+                <div class="category-option" role="option" data-value="Internship">Internship</div>
+                <div class="category-option" role="option" data-value="Career">Career</div>
+                <div class="category-option" role="option" data-value="Personal">Personal</div>
+                <div class="category-option" role="option" data-value="Ideas">Ideas</div>
+                <div class="category-option" role="option" data-value="Tutorials">Tutorials</div>
+                <div class="category-option" role="option" data-value="References">References</div>
+                <div class="category-option" role="option" data-value="Resources">Resources</div>
+                <div class="category-option" role="option" data-value="Important">Important</div>
+                <div class="category-option" role="option" data-value="Research">Research</div>
+                <div class="category-option" role="option" data-value="Other">Other</div>
+              </div>
+            </div>
+            <select id="noteCategory" hidden aria-hidden="true" tabindex="-1">
+              <option value="">Select a category</option>
+              <option value="Getting Started">Getting Started</option>
+              <option value="Programming">Programming</option>
+              <option value="AI & Data Science">AI & Data Science</option>
+              <option value="Web Development">Web Development</option>
+              <option value="App Development">App Development</option>
+              <option value="Database">Database</option>
+              <option value="Machine Learning">Machine Learning</option>
+              <option value="Deep Learning">Deep Learning</option>
+              <option value="Data Analytics">Data Analytics</option>
+              <option value="Projects">Projects</option>
+              <option value="College">College</option>
+              <option value="Study">Study</option>
+              <option value="Assignments">Assignments</option>
+              <option value="Internship">Internship</option>
+              <option value="Career">Career</option>
+              <option value="Personal">Personal</option>
+              <option value="Ideas">Ideas</option>
+              <option value="Tutorials">Tutorials</option>
+              <option value="References">References</option>
+              <option value="Resources">Resources</option>
+              <option value="Important">Important</option>
+              <option value="Research">Research</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+          <label>
+            Tags
+            <div class="tag-select" id="tagSelect">
+              <button type="button" class="tag-select-toggle" id="tagSelectToggle" aria-haspopup="listbox" aria-expanded="false">
+                <span id="tagSelectLabel">Select tags</span>
+                <span class="tag-select-arrow">⌄</span>
+              </button>
+              <div class="tag-select-menu" id="tagSelectMenu" role="listbox" aria-multiselectable="true">
+                <div class="tag-option"><input type="checkbox" value="python"> <span>Python</span></div>
+<div class="tag-option"><input type="checkbox" value="c++"> <span>C++</span></div>
+<div class="tag-option"><input type="checkbox" value="java"> <span>Java</span></div>
+<div class="tag-option"><input type="checkbox" value="javascript"> <span>JavaScript</span></div>
+<div class="tag-option"><input type="checkbox" value="html"> <span>HTML</span></div>
+<div class="tag-option"><input type="checkbox" value="css"> <span>CSS</span></div>
+<div class="tag-option"><input type="checkbox" value="react"> <span>React</span></div>
+<div class="tag-option"><input type="checkbox" value="flask"> <span>Flask</span></div>
+<div class="tag-option"><input type="checkbox" value="django"> <span>Django</span></div>
+<div class="tag-option"><input type="checkbox" value="sql"> <span>SQL</span></div>
+<div class="tag-option"><input type="checkbox" value="mysql"> <span>MySQL</span></div>
+<div class="tag-option"><input type="checkbox" value="sqlite"> <span>SQLite</span></div>
+<div class="tag-option"><input type="checkbox" value="git"> <span>Git</span></div>
+<div class="tag-option"><input type="checkbox" value="github"> <span>GitHub</span></div>
+<div class="tag-option"><input type="checkbox" value="ai"> <span>AI</span></div>
+<div class="tag-option"><input type="checkbox" value="machine-learning"> <span>Machine Learning</span></div>
+<div class="tag-option"><input type="checkbox" value="deep-learning"> <span>Deep Learning</span></div>
+<div class="tag-option"><input type="checkbox" value="data-science"> <span>Data Science</span></div>
+<div class="tag-option"><input type="checkbox" value="data-analytics"> <span>Data Analytics</span></div>
+<div class="tag-option"><input type="checkbox" value="pandas"> <span>Pandas</span></div>
+<div class="tag-option"><input type="checkbox" value="numpy"> <span>NumPy</span></div>
+<div class="tag-option"><input type="checkbox" value="matplotlib"> <span>Matplotlib</span></div>
+<div class="tag-option"><input type="checkbox" value="scikit-learn"> <span>Scikit-learn</span></div>
+<div class="tag-option"><input type="checkbox" value="power-bi"> <span>Power BI</span></div>
+<div class="tag-option"><input type="checkbox" value="api"> <span>API</span></div>
+<div class="tag-option"><input type="checkbox" value="pwa"> <span>PWA</span></div>
+<div class="tag-option"><input type="checkbox" value="project"> <span>Project</span></div>
+<div class="tag-option"><input type="checkbox" value="study"> <span>Study</span></div>
+<div class="tag-option"><input type="checkbox" value="assignment"> <span>Assignment</span></div>
+<div class="tag-option"><input type="checkbox" value="internship"> <span>Internship</span></div>
+<div class="tag-option"><input type="checkbox" value="college"> <span>College</span></div>
+<div class="tag-option"><input type="checkbox" value="tutorial"> <span>Tutorial</span></div>
+<div class="tag-option"><input type="checkbox" value="notes"> <span>Notes</span></div>
+<div class="tag-option"><input type="checkbox" value="reference"> <span>Reference</span></div>
+<div class="tag-option"><input type="checkbox" value="important"> <span>Important</span></div>
+<div class="tag-option"><input type="checkbox" value="ideas"> <span>Ideas</span></div>
+<div class="tag-option"><input type="checkbox" value="practice"> <span>Practice</span></div>
+<div class="tag-option"><input type="checkbox" value="research"> <span>Research</span></div>
+<div class="tag-option"><input type="checkbox" value="career"> <span>Career</span></div>
+              </div>
+            </div>
+            <select id="noteTags" multiple hidden aria-hidden="true" tabindex="-1">
+              <option value="python">Python</option>
+              <option value="html">HTML</option>
+              <option value="css">CSS</option>
+              <option value="javascript">JavaScript</option>
+              <option value="ai">AI</option>
+              <option value="data-science">Data Science</option>
+              <option value="sql">SQL</option>
+              <option value="flask">Flask</option>
+              <option value="project">Project</option>
+              <option value="study">Study</option>
+              <option value="tutorial">Tutorial</option>
+              <option value="notes">Notes</option>
+              <option value="reference">Reference</option>
+            </select>
+            <small class="field-hint">Select one or more tags from the dropdown.</small>
+          </label>
+        </div>
+        <div class="checkbox-row">
+          <label><input type="checkbox" id="noteFavorite"> Mark as favorite</label>
+          <label><input type="checkbox" id="notePinned"> Pin this note</label>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="secondary-btn close-modal" data-close="noteModal">Cancel</button>
+          <button type="submit" class="primary-btn">Save Note</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="viewerModal">
+    <div class="modal viewer-modal">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow" id="viewerCategory">NOTE</span>
+          <h2 id="viewerTitle"></h2>
+        </div>
+        <button class="icon-btn close-modal" data-close="viewerModal">×</button>
+      </div>
+      <div id="viewerMeta" class="viewer-meta"></div>
+      <div id="viewerContent" class="viewer-content"></div>
+      <div id="relatedNotes" class="related-notes"></div>
+      <div class="modal-actions">
+        <button class="secondary-btn" id="copyBtn">Copy Content</button>
+        <button class="secondary-btn" id="pinBtn">Pin / Unpin</button>
+        <button class="primary-btn close-modal" data-close="viewerModal">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/notes.js"></script>
+<script src="js/search.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
